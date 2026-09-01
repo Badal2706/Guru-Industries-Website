@@ -19,6 +19,9 @@
   --teal-dark: #226a64;
   --teal-lite: #7fccc4;
   --teal-tint: #e6efee;
+  /* exact colour sampled from the logo mark itself — used only for the
+     topbar, which is meant to read as a brand-coloured strip */
+  --logo-teal: #13a0a4;
 
   /* legacy aliases still referenced by a few blocks */
   --bg-alt: var(--bone);

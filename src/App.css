@@ -178,8 +178,11 @@ section h2 {
   z-index: 100;
 }
 .topbar {
-  background: var(--bone-deep);
-  color: var(--text);
+  /* brand-coloured strip: matches the teal in the logo mark, verified
+     against WCAG for the text/icons it carries (see below) rather than
+     picked by eye */
+  background: var(--logo-teal);
+  color: var(--ink);
   font-family: var(--display);
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -198,7 +201,10 @@ section h2 {
   gap: var(--s3);
 }
 .topbar span, .topbar a { display: inline-flex; align-items: center; gap: 7px; }
-.topbar a:hover { color: var(--teal-dark); }
+/* a colour-only hover (the old var(--teal-dark)) would nearly vanish
+   against this teal background — underline instead, contrast-independent.
+   Text itself: ink-on-logo-teal measures 5.48:1, clears AA for this size. */
+.topbar a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .topbar-right { display: flex; gap: var(--s4); }
 @media (max-width: 720px) { .topbar { display: none; } }
 
@@ -1445,7 +1451,9 @@ a.info-item:hover { padding-left: var(--s2); }
 
 /* ================= topbar address ================= */
 .topbar-address { transition: color 0.2s ease; }
-.topbar-ext { opacity: 0.55; margin-left: 2px; }
+/* 0.55 measured 2.59:1 on the new teal background (fails the 3:1 minimum
+   for a UI icon) — raised to 0.85, which measures 4.45:1 */
+.topbar-ext { opacity: 0.85; margin-left: 2px; }
 .topbar-address:hover .topbar-ext { opacity: 1; }
 
 /* ================= map ================= */
