@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import Reveal from './Reveal'
+import Modal from './Modal'
+import Icon from './Icon'
 import { clients, plantGallery } from '../data'
 
 function Badge({ name, logo }) {
@@ -10,6 +13,7 @@ function Badge({ name, logo }) {
 }
 
 export default function Clients() {
+  const [lightbox, setLightbox] = useState(null)
   const mid = Math.ceil(clients.length / 2)
   const row1 = clients.slice(0, mid)
   const row2 = clients.slice(mid)
@@ -55,13 +59,35 @@ export default function Clients() {
         </div>
         <div className="plant-grid">
           {plantGallery.map((p, i) => (
-            <Reveal key={p.src} delay={0.08 + i * 0.05} y={16} className="plant-item">
+            <Reveal
+              key={p.src}
+              delay={0.08 + i * 0.05}
+              y={16}
+              className="plant-item"
+              role="button"
+              tabIndex={0}
+              aria-label={`View full image: ${p.caption}`}
+              onClick={() => setLightbox(p)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setLightbox(p) }
+              }}
+            >
               <img src={p.src} alt={p.caption} loading="lazy" />
               <span className="plant-caption">{p.caption}</span>
+              <span className="plant-expand"><Icon name="expand" size={15} /></span>
             </Reveal>
           ))}
         </div>
       </div>
+
+      <Modal open={!!lightbox} onClose={() => setLightbox(null)} label={lightbox?.caption} className="lightbox-panel">
+        {lightbox && (
+          <>
+            <img className="lightbox-img" src={lightbox.src} alt={lightbox.caption} />
+            <p className="lightbox-caption">{lightbox.caption}</p>
+          </>
+        )}
+      </Modal>
     </section>
   )
 }

@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Icon from './Icon'
 
-export default function Modal({ open, onClose, children, label }) {
+export default function Modal({ open, onClose, children, label, className = '' }) {
   const panelRef = useRef(null)
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function Modal({ open, onClose, children, label }) {
         >
           <motion.div
             ref={panelRef}
-            className="modal-panel"
+            className={`modal-panel ${className}`}
             role="dialog"
             aria-modal="true"
             aria-label={label || 'Details'}

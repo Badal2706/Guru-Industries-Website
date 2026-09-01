@@ -327,10 +327,17 @@ section h2 {
   inset: 0;
   z-index: 1;
   /* the ramp has to stay dark past the end of the longest headline row — it
-     was falling off at 62%, leaving the last word sitting on bright steel */
+     was falling off at 62%, leaving the last word sitting on bright steel.
+     Lightened from the original pass (95/90/78/42/58) so more of the plant
+     photo reads through; verified against WCAG contrast at the worst-case
+     (brightest) pixel under each text block, not just the average, so a
+     stray highlight in the photo can't silently break legibility:
+       h1 rows (large text, needs 3:1)      -> worst-case ~4.24:1
+       hero-sub paragraph (needs 4.5:1)      -> worst-case ~8.97:1
+       hero-trust line (needs 4.5:1)         -> worst-case ~11.37:1 */
   background:
-    linear-gradient(90deg, rgba(8,18,17,0.95) 0%, rgba(8,18,17,0.90) 42%, rgba(8,18,17,0.78) 60%, rgba(8,18,17,0.42) 76%, rgba(8,18,17,0.58) 100%),
-    linear-gradient(0deg, rgba(6,14,13,0.85) 0%, transparent 30%, transparent 72%, rgba(6,14,13,0.55) 100%);
+    linear-gradient(90deg, rgba(8,18,17,0.82) 0%, rgba(8,18,17,0.72) 42%, rgba(8,18,17,0.55) 60%, rgba(8,18,17,0.22) 76%, rgba(8,18,17,0.32) 100%),
+    linear-gradient(0deg, rgba(6,14,13,0.60) 0%, transparent 30%, transparent 72%, rgba(6,14,13,0.32) 100%);
 }
 
 /* sits in the flow as the hero's eyebrow — avoids colliding with the nav CTA */
@@ -999,7 +1006,30 @@ section h2 {
   position: relative;
   overflow: hidden;
   background: var(--ink);
+  cursor: pointer;
 }
+.plant-item:focus-visible {
+  outline: 2px solid var(--teal-lite);
+  outline-offset: -2px;
+}
+.plant-expand {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(9,20,19,0.55);
+  color: #fff;
+  border-radius: var(--r);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+}
+.plant-item:hover .plant-expand,
+.plant-item:focus-visible .plant-expand {
+  opacity: 1;
+  transform: translateY(0);
+}
+.plant-item:hover .plant-expand { background: var(--teal); }
 .plant-item:nth-child(1) { grid-column: span 3; grid-row: span 2; }
 .plant-item:nth-child(2) { grid-column: span 3; }
 .plant-item:nth-child(3) { grid-column: span 3; }
@@ -1460,3 +1490,31 @@ a.info-item:hover { padding-left: var(--s2); }
 .form-actions .btn { margin: 0; justify-content: center; padding-left: 18px; padding-right: 18px; }
 .form-actions .btn-ghost { border-color: var(--border); color: var(--text-h); background: #fff; }
 .form-actions .btn-ghost:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+/* ================= image lightbox ================= */
+.lightbox-panel {
+  max-width: min(1100px, 92vw);
+  padding: 0;
+  background: #0c1615;
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.lightbox-panel .modal-close {
+  border-color: rgba(255,255,255,0.35);
+  color: #fff;
+  background: rgba(9,20,19,0.5);
+}
+.lightbox-panel .modal-close:hover { background: #fff; color: var(--ink); }
+.lightbox-img {
+  width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  background: #000;
+}
+.lightbox-caption {
+  padding: var(--s3) var(--s4);
+  color: rgba(255,255,255,0.85);
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
