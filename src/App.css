@@ -1299,6 +1299,19 @@ a.info-item:hover { padding-left: var(--s2); }
   text-transform: uppercase;
   color: var(--text);
 }
+/* the credit reads as a signature, so it keeps sentence case while the
+   rest of the bar stays in the uppercase display style */
+.footer-credit {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+.footer-credit-name {
+  font-weight: 700;
+  color: var(--brimpa);
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 1px;
+}
 
 
 /* ================= whatsapp float ================= */

@@ -70,6 +70,9 @@ export default function Footer() {
         <div className="section-inner footer-bar-inner">
           <p>© {new Date().getFullYear()} Guru Industries. All rights reserved.</p>
           <p>Industrial Gases · Medical Gases · Chemicals</p>
+          <p className="footer-credit">
+            Designed and built by <span className="footer-credit-name">Brimpa</span>
+          </p>
         </div>
       </div>
     </footer>

@@ -22,6 +22,8 @@
   /* exact colour sampled from the logo mark itself — used only for the
      topbar, which is meant to read as a brand-coloured strip */
   --logo-teal: #13a0a4;
+  /* Brimpa's own orange, darkened for AA contrast on the light footer */
+  --brimpa: #9e4c16;
 
   /* legacy aliases still referenced by a few blocks */
   --bg-alt: var(--bone);
