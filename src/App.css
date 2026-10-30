@@ -1311,7 +1311,9 @@ a.info-item:hover { padding-left: var(--s2); }
   color: var(--brimpa);
   border-bottom: 1.5px solid currentColor;
   padding-bottom: 1px;
+  transition: color 0.2s ease;
 }
+.footer-credit-name:hover { color: var(--ink); }
 
 
 /* ================= whatsapp float ================= */

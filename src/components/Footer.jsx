@@ -71,7 +71,15 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Guru Industries. All rights reserved.</p>
           <p>Industrial Gases · Medical Gases · Chemicals</p>
           <p className="footer-credit">
-            Designed and built by <span className="footer-credit-name">Brimpa</span>
+            Designed and built by{' '}
+            <a
+              href="https://brimpa.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-credit-name"
+            >
+              Brimpa
+            </a>
           </p>
         </div>
       </div>
